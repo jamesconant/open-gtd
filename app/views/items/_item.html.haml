@@ -1,0 +1,18 @@
+.list-item-container{id: dom_id(item)}
+  = form_with(model: item, html: {:'data-type' => 'json', class: 'item-form', autocomplete: :off}) do |f|
+    .list-item-name
+      = f.text_field :name, class: "list-item-name-field"
+    .list-item-status
+      %label.container
+        = f.check_box :completed
+        %span.checkmark
+    .list-item-delete
+      = link_to item, method: :delete, remote: true, :class => 'delete-item-link' do
+        = image_tag('trash-light.svg')
+    .list-item-position
+      = f.select :position, options_for_select((1..item.list.items.count), selected: item.position)
+    .list-item-move
+      = image_tag('mover-light.svg')
+
+    .list-item-description.hidden
+      = f.text_area :description, placeholder: "describe your task"

@@ -1,0 +1,6 @@
+$('.delete-item-link').bind('ajax:success', function () {
+    $(this).parents('.list-item-container').remove()
+    $('.list-item-container').toArray().forEach(function (item, index) {
+        $(item).find('.list-item-position').find('#item_position').val(index + 1)
+    });
+});

@@ -1,0 +1,41 @@
+#navigation-menu.hidden
+  - if current_user
+    .navigation-items
+      .title
+        = link_to 'Lists', lists_path
+
+      .items
+        - current_user.lists.without_deleted.order(name: :asc).each do |list|
+          .item
+            = link_to list.name, list_path(list)
+
+    .navigation-items
+      .title
+        Stats
+
+      .items
+        .item
+          #{current_user.items.without_deleted.incomplete.count} waiting
+        .item
+          #{current_user.items.without_deleted.complete.count} done
+        .item
+          #{current_user.items.only_deleted.count} deleted
+
+    .navigation-items
+      .title
+        Profile
+
+      .items
+        .item
+          = link_to 'Sign out', destroy_user_session_path, method: :delete
+
+  - else
+    .navigation-items
+      .title
+        Profile
+
+      .items
+        .item
+          = link_to 'Sign in', new_user_session_path
+        .item
+          = link_to 'Sign up', new_user_registration_path

@@ -1,0 +1,513 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+html, * {
+  font-family: 'Open Sans', sans-serif !important;
+  font-size: 16px;
+}
+
+.center-container {
+  width: 700px;
+  margin: 0 auto;
+
+  h1 {
+    font-size: 26px;
+    font-weight: bold;
+    width: 660px;
+    //padding: 0 20px;
+    height: 46px;
+    line-height: 62px;
+    text-align: center;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.sessions {
+  margin: 100px auto;
+  width: 50%;
+  text-align: center;
+
+  input {
+    width: 100%;
+    border: 0;
+    outline: 0;
+    padding: 8px 20px;
+    margin-bottom: 50px;
+    border-bottom: 3px solid #4285F4;
+    box-sizing: border-box;
+
+    &::placeholder {
+      font-style: italic;
+    }
+  }
+
+  .actions {
+    margin: 60px 0;
+  }
+}
+
+.session-links {
+  a {
+    display: inline-block;
+    color: #4285F4;
+    font-size: 18px;
+    padding-bottom: 30px;
+  }
+}
+
+.btn {
+  background-color: #4285F4 !important;;
+  border: 0 !important;
+  color: white !important;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  width: auto !important;
+}
+
+.list-grid {
+  margin-top: 80px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 40px;
+  padding: 20px;
+  text-align: center;
+
+  a {
+    color: grey;
+    text-decoration: none;
+
+    &:active, &:visited {
+      color: grey;
+    }
+  }
+
+  .list {
+    border-radius: 2px;
+    -webkit-box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+    height: 100px;
+    line-height: 100px;
+    font-size: 26px;
+    font-weight: bold;
+    padding: 0 20px;
+    color: grey;
+  }
+}
+
+#navigation-menu {
+  box-sizing: border-box;
+  padding: 96px 40px;
+  position: absolute;
+  right: 0;
+  height: 100%;
+  width: 300px;
+  -webkit-box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 90;
+  color: grey;
+  background-color: white;
+
+  .navigation-items {
+    margin-bottom: 36px;
+
+    .title {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 24px;
+
+      a {
+        color: grey;
+        text-decoration: none;
+
+        &:active, &:visited {
+          color: grey;
+        }
+      }
+    }
+
+    .items {
+      margin-left: 20px;
+
+      .item {
+        font-size: 18px;
+        margin-bottom: 16px;
+
+        a {
+          color: grey;
+          text-decoration: none;
+
+          &:active, &:visited {
+            color: grey;
+          }
+        }
+      }
+    }
+  }
+}
+
+#list-title-bar {
+  position: relative;
+  background-color: #4285F4;
+  height: 64px;
+  color: white;
+  z-index: 100;
+  -webkit-box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+
+  input {
+    background-color: inherit;
+    border: 0;
+    outline: 0;
+    font-size: 26px;
+    font-weight: bold;
+    color: inherit;
+    width: 660px;
+    //padding: 0 20px;
+    text-align: center;
+    height: 46px;
+    margin: 8px 0;
+    border-radius: 2px;
+
+    &:focus {
+      background-color: #679cf5;
+    }
+  }
+
+  a {
+    position: absolute;
+    right: 22px;
+    top: 18px;
+
+    img {
+      height: 28px;
+      width: 28px;
+    }
+  }
+}
+
+#list-items-container {
+  margin: 80px 0;
+
+  #new-list-item-container {
+    padding: 8px 20px;
+    margin-bottom: 30px;
+    border-bottom: 3px solid #4285F4;
+
+    input {
+      width: 100%;
+      border: 0;
+
+      &::placeholder {
+        font-style: italic;
+      }
+    }
+
+    input:focus, textarea:focus {
+      border: 0;
+      outline: 0;
+    }
+  }
+
+  .list-item-container {
+    border-bottom: 1px solid lightgrey;
+
+    .item-form {
+      background-color: white;
+      display: grid;
+      grid-template-columns: 460px 60px 60px 60px 60px;
+      grid-template-areas:
+              "name status delete position move"
+              "description description description description description";
+      grid-gap: 0;
+    }
+
+    .list-item-position {
+      grid-area: position;
+      margin: auto;
+
+
+      select {
+        color: #b2b2b2;
+        cursor: ns-resize;
+        background-color: white;
+        border: 0;
+        font-size: 18px;
+        -webkit-appearance: none;
+      }
+    }
+
+    .list-item-status {
+      grid-area: status;
+      display: inline-block;
+      padding: 20px;
+    }
+
+    .list-item-name {
+      grid-area: name;
+      cursor: text;
+
+      input {
+        padding: 20px;
+        border: 0;
+        outline: 0;
+        width: 100%;
+        text-overflow: ellipsis;
+      }
+    }
+
+    .list-item-delete, .list-item-move {
+      margin: auto;
+
+      img {
+        height: 24px;
+      }
+    }
+
+    .list-item-delete {
+      grid-area: delete;
+      cursor: pointer;
+    }
+
+    .list-item-move {
+      grid-area: move;
+      cursor: grab;
+
+      &:active {
+        cursor: grabbing;
+      }
+    }
+
+    .list-item-description {
+      grid-area: description;
+      padding: 20px;
+      border-top: 1px solid lightgrey;
+      background-color: #f7f7f7;
+
+      textarea {
+        width: 97%;
+        font-size: 14px;
+        padding: 7px;
+        border: 0;
+        outline: 0;
+        background-color: #f7f7f7;
+
+        &::placeholder {
+          font-style: italic;
+        }
+      }
+    }
+  }
+
+  #persisted-list-items-container {
+    background-color: #4285F4;
+    -webkit-box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+  }
+}
+
+// high DPI mobile
+@media  screen and (-o-min-device-pixel-ratio: 2/1) and (max-width: 1000px),
+        screen and (-webkit-min-device-pixel-ratio: 2) and (max-width: 1000px),
+        screen and (min-device-pixel-ratio: 2) and (max-width: 1000px) {
+
+  html, * {
+    font-family: 'Open Sans', sans-serif !important;
+    font-size: 36px;
+  }
+
+  .center-container {
+    width: 100%;
+  }
+
+  .list-grid {
+    margin-top: 80px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 40px;
+    padding: 20px;
+  }
+
+  #list-items-container {
+    #new-list-item-container {
+      width: 70%;
+      padding: 20px 50px;
+      border-bottom: 6px solid #4285F4;
+      margin: 60px auto;
+    }
+
+
+    #persisted-list-items-container {
+      background-color: white;
+    }
+
+    .list-item-container {
+      border-bottom: 2px solid lightgrey;
+      //padding: 30px;
+
+      .item-form {
+        display: grid;
+        grid-template-columns: 60% 10% 10% 10% 10%;
+        grid-template-areas: "name status delete position move" "description description description description description";
+        grid-gap: 0;
+      }
+
+      .list-item-status {
+        grid-area: status;
+        display: inline-block;
+        padding: 25px;
+      }
+
+      .list-item-position {
+        grid-area: position;
+        margin: auto;
+
+        select {
+          color: #b2b2b2;
+          font-size: 36px;
+
+          optgroup {
+            font-size: 14px;
+          }
+        }
+      }
+
+      .list-item-delete, .list-item-move {
+        margin: auto;
+
+        img {
+          height: 48px;
+        }
+      }
+
+      .list-item-description {
+        padding: 20px;
+
+        textarea {
+          width: 90%;
+          font-size: 36px;
+          padding: 14px;
+          border: 0;
+          outline: 0;
+          background-color: #f7f7f7;
+        }
+      }
+    }
+  }
+
+  #list-title-bar {
+    position: relative;
+    background-color: #4285F4;
+    height: 128px;
+    color: white;
+    z-index: 100;
+    -webkit-box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.15);
+
+    input {
+      background-color: inherit;
+      border: 0;
+      outline: 0;
+      font-size: 52px;
+      font-weight: bold;
+      color: inherit;
+      width: 100%;
+      text-align: center;
+      height: 128px;
+      margin: 0;
+      border-radius: 2px;
+
+      &:focus {
+        background-color: #679cf5;
+      }
+    }
+
+    a {
+      position: absolute;
+      right: 44px;
+      top: 36px;
+
+      img {
+        height: 56px;
+        width: 56px;
+      }
+    }
+  }
+
+  .center-container {
+    h1 {
+      font-size: 52px;
+      font-weight: bold;
+      line-height: 128px;
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  #navigation-menu {
+    box-sizing: border-box;
+    padding: 192px 80px;
+    position: absolute;
+    right: 0;
+    height: 100%;
+    width: 60%;
+    -webkit-box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+    z-index: 90;
+    color: grey;
+    background-color: white;
+
+    .navigation-items {
+      margin-bottom: 72px;
+
+      .title {
+        font-size: 40px;
+        font-weight: bold;
+        margin-bottom: 56px;
+
+        a {
+          color: grey;
+          text-decoration: none;
+
+          &:active, &:visited {
+            color: grey;
+          }
+        }
+      }
+
+      .items {
+        margin-left: 40px;
+
+        .item {
+          font-size: 36px;
+          margin-bottom: 52px;
+
+          a {
+            color: grey;
+            text-decoration: none;
+
+            &:active, &:visited {
+              color: grey;
+            }
+          }
+        }
+      }
+    }
+  }
+}

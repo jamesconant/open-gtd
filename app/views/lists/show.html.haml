@@ -1,0 +1,153 @@
+= render partial: 'layouts/navigation'
+
+#list-title-bar
+  .center-container
+    = form_with(model: @list, html: {:'data-type' => 'json'}) do |f|
+      = f.text_field :name
+  = link_to '#', id: 'menu-btn' do
+    = image_tag('menu.svg')
+
+.center-container
+  #list-items-container
+    #new-list-item-container
+      = form_with(model: @list.items.build, html: {:'data-type' => 'json', autocomplete: :off}, id: "new_item") do |f|
+        = f.text_field :name, placeholder: 'add a task'
+        = f.hidden_field :list_id, value: @list.id
+
+    #persisted-list-items-container{ 'data-url' => sort_items_path }
+      - @list.items.persisted.order(position: :asc).each do |item|
+        = render partial: "items/item", locals: { item: item }
+
+:javascript
+    $(document).ready(function() {
+      $('#menu-btn').click(function(event){
+        event.stopPropagation();
+        event.preventDefault();
+        $('#navigation-menu').toggleClass('hidden');
+      });
+
+      $("#persisted-list-items-container").sortable({
+        update: function(e, ui) {
+          $.ajax({
+            url: $(this).data("url"),
+            type: "PATCH",
+            data: $(this).sortable('serialize'),
+          }).done(function(response){
+            $('.list-item-container').toArray().forEach(function (item, index) {
+              $(item).find('.list-item-position').find('#item_position').val(index + 1)
+            });
+          });
+        }
+      });
+
+      function submitForm(form){
+        let put_url = $(form).attr("action"); //get form action url
+        let request_method = 'PUT';
+        let form_data = $(form).serialize(); //Encode form elements for submission
+
+        $.ajax({
+          url : put_url,
+          type: request_method,
+          data : form_data,
+          dataType : 'json'
+        }).done(function(response){
+          // noop
+        });
+      }
+
+      window.timeout=null;
+
+      $('#list-title-bar').find('input[type="text"]').on('change', function(event){
+        let form = $(event.target).parents('form');
+        clearTimeout(window.timeout);
+        window.timeout = setTimeout(submitForm, 1000, form);
+      });
+
+      $('#persisted-list-items-container').find('textarea, input[type="text"]').on('change', function(event){
+        let form = $(event.target).parents('form');
+        clearTimeout(window.timeout);
+        window.timeout = setTimeout(submitForm, 1000, form);
+      });
+
+      $('input[type="checkbox"]').change(function(event) {
+          let form = $(event.target).parents('form');
+          submitForm(form);
+      });
+
+      $('select').change(function(event) {
+          let form = $(event.target).parents('form');
+          submitForm(form);
+
+          let movingContainer = $(event.currentTarget).parents('.list-item-container')[0];
+          let priorIndex = $('#persisted-list-items-container').children().toArray().indexOf(movingContainer);
+          let targetPosition = $(event.currentTarget).val();
+          let itemsList = $('.list-item-container');
+
+          let targetIndex = ((priorIndex > targetPosition - 1) || (itemsList.length.toString() == targetPosition)) ? (targetPosition - 1) : targetPosition;
+
+          if (itemsList.length.toString() == targetPosition) {
+            $(itemsList[targetIndex]).after(movingContainer)
+          } else {
+            $(itemsList[targetIndex]).before(movingContainer)
+          }
+
+          $('.list-item-container').toArray().forEach(function (item, index) {
+            $(item).find('.list-item-position').find('#item_position').val(index + 1)
+          });
+      });
+
+      $('textarea').autoResize();
+
+      $(".list-item-name-field").click(function(event){
+        $(event.target.parentElement.parentElement).toggleClass('expanded');
+        $(event.target.parentElement.parentElement).find('.list-item-description').toggleClass("hidden");
+      });
+
+      $('#new_item').on('ajax:success', function(event){
+        [data, status, xhr] = event.detail;
+        $("#item_name").val("");
+        $("#item_description").val("");
+
+        // add to select options (before new one rendered!)
+        let newCount = $('.list-item-container').length + 1
+        $('#persisted-list-items-container').find('select').append('<option value="' + newCount + '">' + newCount + '</option>')
+
+        $("#persisted-list-items-container").append(data);
+
+        $($("#persisted-list-items-container").children()[0]).find('textarea').autoResize();
+        $($("#persisted-list-items-container").children()[0]).find(".list-item-name-field").click(function(event){
+          $(event.target.parentElement.parentElement).toggleClass('expanded');
+          $(event.target.parentElement.parentElement).find('.list-item-description').toggleClass("hidden");
+        });
+        $($("#persisted-list-items-container").children()[0]).find('textarea').on('keyup', function(event){
+          let form = $(event.target).parents('form');
+          clearTimeout(window.timeout);
+          window.timeout = setTimeout(submitForm(form), 1000); // waits 1 second for user to press a new key
+        });
+
+        // make this a function
+        $('select').change(function(event) {
+            let form = $(event.target).parents('form');
+            submitForm(form);
+
+            let movingContainer = $(event.currentTarget).parents('.list-item-container')[0];
+            let priorIndex = $('#persisted-list-items-container').children().toArray().indexOf(movingContainer);
+            let targetPosition = $(event.currentTarget).val();
+            let itemsList = $('.list-item-container');
+
+            let targetIndex = ((priorIndex > targetPosition - 1) || (itemsList.length.toString() == targetPosition)) ? (targetPosition - 1) : targetPosition;
+
+            if (itemsList.length.toString() == targetPosition) {
+              $(itemsList[targetIndex]).after(movingContainer)
+            } else {
+              $(itemsList[targetIndex]).before(movingContainer)
+            }
+
+            $('.list-item-container').toArray().forEach(function (item, index) {
+              $(item).find('.list-item-position').find('#item_position').val(index + 1)
+            });
+        });
+      }).on('ajax:error', function(event){
+        // no-op
+      });
+    });

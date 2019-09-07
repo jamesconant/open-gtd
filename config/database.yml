@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  # ex: postgres://username:password@localhost/myrailsdb
+  url: <%= ENV['DATABASE_URL'] %>
+
+development:
+  <<: *default
+  # database: memo-dev
+
+test:
+  <<: *default
+  # database: memo-test
+
+production:
+  <<: *default
+  # database: memo-prod
