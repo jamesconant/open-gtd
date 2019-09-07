@@ -33,6 +33,7 @@
           });
         }
       });
+      $("#persisted-list-items-container").disableSelection();
 
       function submitForm(form){
         let put_url = $(form).attr("action"); //get form action url

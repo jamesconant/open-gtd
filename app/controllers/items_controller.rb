@@ -39,7 +39,7 @@ class ItemsController < ApplicationController
     @item.update(list_id: current_user.lists.deleted.id)
 
     respond_to do |format|
-      format.html { redirect_to items_url, notice: 'Item was successfully destroyed.' }
+      format.html { redirect_to lists_url, notice: 'Item was successfully destroyed.' }
       format.json { head :no_content }
       format.js { render :layout => false }
     end

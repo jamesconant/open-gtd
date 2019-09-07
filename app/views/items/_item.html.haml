@@ -7,12 +7,11 @@
         = f.check_box :completed
         %span.checkmark
     .list-item-delete
-      = link_to item, method: :delete, remote: true, :class => 'delete-item-link' do
-        = image_tag('trash-light.svg')
+      = link_to '', item_path(item), method: :delete, remote: true, class: 'delete-item-link icon-bin'
     .list-item-position
       = f.select :position, options_for_select((1..item.list.items.count), selected: item.position)
     .list-item-move
-      = image_tag('mover-light.svg')
+      .icon-menu4
 
     .list-item-description.hidden
       = f.text_area :description, placeholder: "describe your task"
