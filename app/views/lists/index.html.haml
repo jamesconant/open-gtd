@@ -13,5 +13,6 @@
       .list
         = list.name
 
-  .list
-    = link_to 'New list...', new_list_path
+  = link_to new_list_path, class: "new-list-link" do
+    .list
+      New list...

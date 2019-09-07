@@ -111,6 +111,11 @@ html, * {
   }
 }
 
+
+.new-list-link {
+  font-style: italic;
+}
+
 #navigation-menu {
   box-sizing: border-box;
   padding: 96px 40px;
@@ -156,10 +161,6 @@ html, * {
 
           &:active, &:visited {
             color: grey;
-          }
-
-          &.new-list-link {
-            font-style: italic;
           }
         }
       }
@@ -515,4 +516,10 @@ html, * {
       }
     }
   }
+}
+
+input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
