@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :lists, except: [:new, :edit]
+  resources :lists, except: [:edit]
 
   root to: "lists#index"
 end

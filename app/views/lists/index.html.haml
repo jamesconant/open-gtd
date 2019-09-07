@@ -13,11 +13,5 @@
       .list
         = list.name
 
-:javascript
-    $(document).ready(function() {
-      $('#menu-btn').click(function(event){
-        event.stopPropagation();
-        event.preventDefault();
-        $('#navigation-menu').toggleClass('hidden');
-      });
-    });
+  .list
+    = link_to 'New list...', new_list_path

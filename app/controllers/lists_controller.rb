@@ -9,6 +9,11 @@ class ListsController < ApplicationController
     @items = @list.items
   end
 
+  def new
+    list = current_user.lists.create(name: "Untitled")
+    redirect_to list_path(list)
+  end
+
   def create
     @list = current_user.lists.build(list_params)
 

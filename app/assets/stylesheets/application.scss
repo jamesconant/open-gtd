@@ -148,6 +148,7 @@ html, * {
       .item {
         font-size: 18px;
         margin-bottom: 16px;
+        text-overflow: ellipsis;
 
         a {
           color: grey;
@@ -155,6 +156,10 @@ html, * {
 
           &:active, &:visited {
             color: grey;
+          }
+
+          &.new-list-link {
+            font-style: italic;
           }
         }
       }

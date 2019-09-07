@@ -22,12 +22,3 @@
         = f.submit "Sign in", class: 'btn'
 
     = render "devise/shared/links"
-
-:javascript
-    $(document).ready(function() {
-      $('#menu-btn').click(function(event){
-        event.stopPropagation();
-        event.preventDefault();
-        $('#navigation-menu').toggleClass('hidden');
-      });
-    });

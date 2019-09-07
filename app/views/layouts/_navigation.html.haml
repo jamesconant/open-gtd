@@ -9,6 +9,9 @@
           .item
             = link_to list.name, list_path(list)
 
+        .item
+          = link_to 'New list...', new_list_path, class: 'new-list-link'
+
     .navigation-items
       .title
         Stats
@@ -39,3 +42,12 @@
           = link_to 'Sign in', new_user_session_path
         .item
           = link_to 'Sign up', new_user_registration_path
+
+:javascript
+    $(document).ready(function() {
+      $('#menu-btn').click(function(event){
+        event.stopPropagation();
+        event.preventDefault();
+        $('#navigation-menu').toggleClass('hidden');
+      });
+    });
