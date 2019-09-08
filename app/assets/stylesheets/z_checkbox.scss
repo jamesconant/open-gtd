@@ -104,10 +104,10 @@ screen and (min-device-pixel-ratio: 2) and (max-width: 1000px) {
     position: absolute;
     top: 0;
     left: 0;
-    height: 36px;
-    width: 36px;
+    height: 56px;
+    width: 56px;
     background-color: white;
-    border: 2px solid #e4e4e4;
+    border: 5px solid #e4e4e4;
     box-sizing: border-box;
     border-radius: 3px;
   }
@@ -139,12 +139,12 @@ screen and (min-device-pixel-ratio: 2) and (max-width: 1000px) {
 
   /* Style the checkmark/indicator */
   .container .checkmark:after {
-    left: 10px;
-    top: 2px;
-    width: 8px;
-    height: 18px;
+    left: 16px;
+    top: 3px;
+    width: 15px;
+    height: 30px;
     border: solid white;
-    border-width: 0 6px 6px 0;
+    border-width: 0 8px 8px 0;
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);

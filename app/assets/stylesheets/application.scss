@@ -362,6 +362,7 @@ html, * {
         border: 0;
         outline: 0;
         background-color: #f7f7f7;
+        height: 200px;
 
         &::placeholder {
           font-style: italic;
@@ -405,11 +406,32 @@ html, * {
       padding: 20px 50px;
       border-bottom: 6px solid #4285F4;
       margin: 60px auto;
+
+      input, textarea {
+        font-size: 48px;
+      }
     }
 
 
     #persisted-list-items-container {
       background-color: white;
+
+      input {
+        font-size: 48px;
+      }
+
+      textarea {
+        font-size: 18px;
+
+        &::placeholder {
+          font-size: 36px;
+        }
+      }
+
+
+      //input, textarea {
+      //  font-size: 42px;
+      //}
     }
 
     .list-item-container {
@@ -428,6 +450,10 @@ html, * {
         }
       }
 
+      .list-item-name {
+        padding: 30px;
+      }
+
       .item-form {
         display: grid;
         grid-template-columns: 60% 10% 10% 10% 10%;
@@ -438,7 +464,7 @@ html, * {
       .list-item-status {
         grid-area: status;
         display: inline-block;
-        padding: 25px;
+        padding: 45px 0;
       }
 
       .list-item-position {
@@ -459,9 +485,8 @@ html, * {
         padding: 20px;
 
         textarea {
-          width: 90%;
-          font-size: 36px;
-          padding: 14px;
+          height: 300px;
+          padding: 30px;
           border: 0;
           outline: 0;
           background-color: #f7f7f7;
