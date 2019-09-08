@@ -323,7 +323,7 @@ html, * {
     }
 
     .list-item-delete, .list-item-move {
-      margin: auto;
+      padding: 17px 17px;
       text-decoration: none;
       color: #b2b2b2;
       font-size: 24px;
@@ -414,7 +414,7 @@ html, * {
 
 
     #persisted-list-items-container {
-      background-color: white;
+      background-color: #4285F4;
 
       input {
         font-size: 48px;
@@ -438,7 +438,7 @@ html, * {
       border-bottom: 2px solid lightgrey;
 
       .list-item-delete, .list-item-move {
-        margin: auto;
+        padding: 48px 24px;
         text-decoration: none;
         color: #b2b2b2;
         font-size: 48px;
@@ -456,7 +456,7 @@ html, * {
 
       .item-form {
         display: grid;
-        grid-template-columns: 60% 10% 10% 10% 10%;
+        grid-template-columns: 55% 10% 10% 10% 15%;
         grid-template-areas: "name status delete position move" "description description description description description";
         grid-gap: 0;
       }

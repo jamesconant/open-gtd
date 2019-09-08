@@ -16,3 +16,20 @@ require("jquery-ui");
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
+$(document).ready(function () {
+    $("#persisted-list-items-container").sortable({
+        handle: ".list-item-move",
+        update: function (e, ui) {
+            $.ajax({
+                url: $(this).data("url"),
+                type: "PATCH",
+                data: $(this).sortable('serialize'),
+            }).done(function (response) {
+                $('.list-item-container').toArray().forEach(function (item, index) {
+                    $(item).find('.list-item-position').find('#item_position').val(index + 1)
+                });
+            });
+        }
+    });
+});

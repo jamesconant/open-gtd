@@ -6,11 +6,14 @@ NOTICE: This software is not available, permitted, or warrantied for commercial 
 
 # ToDo
 
+* add ability to delete lists
+* display deleted list on lists page and navigation menu
+* automatically create "Deleted" list with new users, don't let them rename or delete that list.
+* update list index page display
 * clean up javascript, it's a mess
 * clean up css, it's just as bad
 * trim out unnecessary boilerplate code
 * add postgresql full-text search support
-* update list index page display
 * writing some tests would probably be good
 * writing some docs would also be good
 * docker-ize
